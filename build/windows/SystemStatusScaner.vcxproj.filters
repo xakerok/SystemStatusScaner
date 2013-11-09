@@ -37,6 +37,12 @@
     <Filter Include="Source Files\gui">
       <UniqueIdentifier>{4a5b1e43-f917-4b52-b310-4b7fb07c0465}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\core">
+      <UniqueIdentifier>{2d35f34b-e03f-435a-9fef-b11b6a83ffcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\core">
+      <UniqueIdentifier>{ced61caa-6329-4541-89ce-3ba233cab871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_main_widget.cpp">
@@ -51,6 +57,21 @@
     <ClCompile Include="..\..\src\gui\main_widget.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_calculator_cpu.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_calculator_cpu.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_calculator_ram.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_calculator_ram.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\core\calculator_ram.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
@@ -59,10 +80,19 @@
     <CustomBuild Include="..\..\include\gui\main_widget.h">
       <Filter>Header Files\gui</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\include\core\calculator_cpu.h">
+      <Filter>Header Files\core</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\include\core\calculator_ram.h">
+      <Filter>Header Files\core</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_main_window_widget.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\core\data_calculator.h">
+      <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
