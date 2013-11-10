@@ -13,14 +13,16 @@ class CCalculatorCPU :
 public:
    CCalculatorCPU(QObject* parent = nullptr);
    virtual ~CCalculatorCPU();
-      
+
    //inherited from CAbstractDataCalculator
-   int GetCurrValue() const;
-   
-protected:
-   void GetNextValue();
+   const int GetCurrValue();
 private:
+   Q_SLOT void CalculateCurrValue();
+   Q_SIGNAL void GetNextValue();
+
    FILETIME* m_ftPrevIdleTime;
    FILETIME* m_ftPrevKernelTime;
    FILETIME* m_ftPrevUserTime;
+
+   int m_iCurrCPUValue;
 };

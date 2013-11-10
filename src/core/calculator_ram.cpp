@@ -2,7 +2,6 @@
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
-//#include <sysinfoapi.h>
 #endif
 
 CCalculatorRAM::CCalculatorRAM (QObject* parent) :
@@ -32,7 +31,7 @@ void CCalculatorRAM::CalculateCurrValue()
    m_iCurrRAMLoad = statex.dwMemoryLoad;
 #else
    m_iCurrRAMLoad = 0;
-   Q_ASSERT("Cant get RAM value for this OS")
+#error ("Can't get RAM value for this OS")
 #endif
 }
 
