@@ -30,7 +30,7 @@ CCalculatorCPU::CCalculatorCPU(QObject* parent) :
    copyFileTimes(m_ftPrevUserTime,ftUserTime);
 
 #endif
-   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue())/*, Qt::QueuedConnection*/));
+   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue()), Qt::QueuedConnection));
 }
 
 CCalculatorCPU::~CCalculatorCPU()
@@ -49,8 +49,8 @@ void CCalculatorCPU::CalculateCurrValue()
    FILETIME ftNewKernelTime;
    FILETIME ftNewUserTime;
    
-   //TODO: Fix crash divide by zero
-   ::Sleep(50);
+//TODO: Fix crash divide by zero
+//   ::Sleep(50);
    
    BOOL bResult = ::GetSystemTimes(&ftNewIdleTime,&ftNewKernelTime,&ftNewUserTime);
 
@@ -77,7 +77,6 @@ void CCalculatorCPU::CalculateCurrValue()
    m_iCurrCPUValue = 0;
 #error ("Can't get CPU for this OS");
 #endif
-   emit GetNextValue();
 }
 
 const int CCalculatorCPU::GetCurrValue()

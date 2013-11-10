@@ -75,6 +75,15 @@
     <ClCompile Include="..\..\src\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_data_storage.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_data_storage.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\core\data_storage.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
@@ -88,6 +97,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\include\gui\main_widget.h">
       <Filter>Header Files\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\include\core\data_storage.h">
+      <Filter>Header Files\core</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
