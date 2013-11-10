@@ -17,7 +17,7 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 
    m_pDataTimer->setInterval(1000);
    Q_ASSERT(connect(m_pDataTimer,SIGNAL(timeout()),this,SLOT(GetCurrDataValue())));
-//   m_pDataTimer->start();
+   m_pDataTimer->start();
 }
 
 CMainWindowWidget::~CMainWindowWidget()
@@ -28,6 +28,6 @@ CMainWindowWidget::~CMainWindowWidget()
 void CMainWindowWidget::GetCurrDataValue()
 {
    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz");
-   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
-   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
+//   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
+//   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
 }
