@@ -6,8 +6,8 @@
 class CAbstractDataCalculator
 {
    //get curr value
-   virtual int GetCurrValue()const = 0;
+   virtual const int GetCurrValue() = 0;
 protected:
    //calculate curr value
-   virtual void CalculateCurrValue() const = 0;
+   virtual void CalculateCurrValue() = 0;
 };
