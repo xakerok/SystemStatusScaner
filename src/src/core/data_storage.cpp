@@ -3,6 +3,7 @@
 #include "core\calculator_cpu.h"
 #include "core\calculator_ram.h"
 
+
 #ifdef _DEBUG
 #include <qdebug.h>
 #endif
@@ -26,15 +27,11 @@ CDataStorage::CDataStorage(QObject* parent) :
 
    Q_ASSERT(connect(m_updatableTimer,SIGNAL(timeout()),this,SLOT(UpdateData())));
    m_updatableTimer->setSingleShot(false);
-   m_updatableTimer->start(5000);
+   m_updatableTimer->start(1000);
 }
 
 CDataStorage::~CDataStorage()
 {
-   qDeleteAll(m_listDataValues);
-   m_listDataValues.clear();
-   m_ThreadCPU.quit();
-   m_ThreadRAM.quit();
 }
 
 void CDataStorage::UpdateData()
@@ -48,6 +45,20 @@ void CDataStorage::UpdateData()
 #ifdef _DEBUG
    qDebug() << currDataValue->uiNumber << "\t" << currDataValue->strTime << "\t" << currDataValue->usCPU << "  " << currDataValue->usRAM;
 #endif
-
+   m_dataMutex.lock();
    m_listDataValues.push_back(currDataValue);
+   m_dataMutex.unlock();
+}
+
+
+bool CDataStorage::stop()
+{
+   m_updatableTimer->stop();
+   m_ThreadCPU.quit();
+   m_ThreadRAM.quit();
+   qDeleteAll(m_listDataValues);
+   m_listDataValues.clear();
+   if(m_ThreadCPU.isFinished() && m_ThreadRAM.isFinished())
+      return true;
+   return false;
 }

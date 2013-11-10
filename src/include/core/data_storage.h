@@ -7,6 +7,7 @@
 #include <qdatetime.h>
 #include <qtimer.h>
 #include <qthread.h>
+#include <qmutex.h>
 
 /**
 *  Class for collecting all loaded data
@@ -19,6 +20,7 @@ public:
    CDataStorage(QObject* parent = nullptr);
    virtual ~CDataStorage();
 
+   bool stop();
 private:
    CAbstractDataCalculator* m_pCPUcalc;
    CAbstractDataCalculator* m_pRAMcalc;
@@ -39,5 +41,7 @@ private:
 
    Q_SLOT void UpdateData();
    int m_iCurrNumber;
+
+   mutable QMutex m_dataMutex;
 };
 

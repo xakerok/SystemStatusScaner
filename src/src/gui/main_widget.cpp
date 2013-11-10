@@ -14,12 +14,9 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 	ui.tabCalculation->setLayout(ui.verticalLayout_3);
 	ui.tabGraph->setLayout(ui.verticalLayout_4);
 
-//   m_pDataTimer->setInterval(1000);
-//   Q_ASSERT(connect(m_pDataTimer,SIGNAL(timeout()),this,SLOT(GetCurrDataValue())));
-//   m_pDataTimer->start();
 }
 
 CMainWindowWidget::~CMainWindowWidget()
 {
-
+   do {} while ( !m_pDataStorage->stop() );
 }
