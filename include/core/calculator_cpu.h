@@ -3,7 +3,11 @@
 #include "data_calculator.h"
 #include <qobject.h>
 
-struct FILETIME;
+struct SFileTime 
+{
+    DWORD dwLowDateTime;
+    DWORD dwHighDateTime;
+};
 
 class CCalculatorCPU :
    public QObject,

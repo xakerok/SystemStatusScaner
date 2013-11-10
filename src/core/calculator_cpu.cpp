@@ -35,19 +35,19 @@ void CCalculatorCPU::CalculateCurrValue()
    FILETIME ftNewUserTime;
    BOOL bResult = ::GetSystemTimes(&ftNewIdleTime,&ftNewKernelTime,&ftNewUserTime);
 
-   int iOldIdle = m_ftPrevIdleTime->dwLowDateTime;
-   int iNewIdle = ftNewIdleTime.dwLowDateTime;
-   int idle = iNewIdle - iOldIdle;
+   ULONG iOldIdle = m_ftPrevIdleTime->dwLowDateTime;
+   ULONG iNewIdle = ftNewIdleTime.dwLowDateTime;
+   ULONG idle = iNewIdle - iOldIdle;
 
-   int iOldKernel = m_ftPrevKernelTime->dwLowDateTime;
-   int iNewKernel = ftNewKernelTime.dwLowDateTime;
-   int kernel = iNewKernel - iOldKernel;
+   ULONG iOldKernel = m_ftPrevKernelTime->dwLowDateTime;
+   ULONG iNewKernel = ftNewKernelTime.dwLowDateTime;
+   ULONG kernel = iNewKernel - iOldKernel;
 
-   int iOldUser = m_ftPrevUserTime->dwLowDateTime;
-   int iNewUser = ftNewUserTime.dwLowDateTime;
-   int user = iNewUser - iOldUser;
+   ULONG iOldUser = m_ftPrevUserTime->dwLowDateTime;
+   ULONG iNewUser = ftNewUserTime.dwLowDateTime;
+   ULONG user = iNewUser - iOldUser;
 
-   int sys = kernel + user;
+   ULONG sys = kernel + user;
    m_iCurrCPUValue = ((sys-idle)/sys)*100;
 
    m_ftPrevIdleTime = &ftNewIdleTime;
