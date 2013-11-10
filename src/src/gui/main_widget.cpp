@@ -17,7 +17,7 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 
    m_pDataTimer->setInterval(1000);
    Q_ASSERT(connect(m_pDataTimer,SIGNAL(timeout()),this,SLOT(GetCurrDataValue())));
-   m_pDataTimer->start();
+//   m_pDataTimer->start();
 }
 
 CMainWindowWidget::~CMainWindowWidget()
