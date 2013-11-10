@@ -5,8 +5,7 @@
 #include "ui_main_window_widget.h"
 
 //test core classes for working
-#include "core\calculator_cpu.h"
-#include "core\calculator_ram.h"
+#include "core\data_storage.h"
 #include <qtimer.h>
 
 class CMainWindowWidget : public QMainWindow
@@ -19,10 +18,8 @@ public:
 private:
 	Ui::MainWindowWidget ui;
 
-   CCalculatorCPU* m_pCPUcalc;
-   CCalculatorRAM* m_pRAMcalc;
-   QTimer* m_pDataTimer;
-   Q_SLOT void GetCurrDataValue();
+   CDataStorage* m_pDataStorage;
+//   QTimer* m_pDataTimer;
 };
 
 #endif // MAIN_WIDGET_H

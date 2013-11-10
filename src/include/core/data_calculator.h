@@ -5,6 +5,7 @@
 */
 class CAbstractDataCalculator
 {
+public:
    //get curr value
    virtual const int GetCurrValue() = 0;
 protected:

@@ -50,7 +50,7 @@ void CCalculatorCPU::CalculateCurrValue()
    FILETIME ftNewUserTime;
    
    //TODO: Fix crash divide by zero
-   ::Sleep(50);
+//   ::Sleep(50);
    
    BOOL bResult = ::GetSystemTimes(&ftNewIdleTime,&ftNewKernelTime,&ftNewUserTime);
 
