@@ -3,11 +3,13 @@
 #include "data_calculator.h"
 #include <qobject.h>
 
+#ifdef Q_OS_WIN
 struct SFileTime 
 {
-    DWORD dwLowDateTime;
-    DWORD dwHighDateTime;
+    unsigned long dwLowDateTime;
+    unsigned long dwHighDateTime;
 };
+#endif
 
 class CCalculatorCPU :
    public QObject,
@@ -23,10 +25,10 @@ public:
 private:
    Q_SLOT void CalculateCurrValue();
    Q_SIGNAL void GetNextValue();
-
-   FILETIME* m_ftPrevIdleTime;
-   FILETIME* m_ftPrevKernelTime;
-   FILETIME* m_ftPrevUserTime;
-
+#ifdef Q_OS_WIN
+   SFileTime* m_ftPrevIdleTime;
+   SFileTime* m_ftPrevKernelTime;
+   SFileTime* m_ftPrevUserTime;
+#endif
    int m_iCurrCPUValue;
 };

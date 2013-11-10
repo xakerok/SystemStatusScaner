@@ -4,15 +4,31 @@
 #include <Windows.h>
 #endif
 
+void copyFileTimes(SFileTime* ft, FILETIME& winFT)
+{
+   ft->dwHighDateTime = winFT.dwHighDateTime;
+   ft->dwLowDateTime = winFT.dwLowDateTime;
+}
+
 CCalculatorCPU::CCalculatorCPU(QObject* parent) :
    QObject(parent),
    m_iCurrCPUValue(NULL)
 {
 #ifdef Q_OS_WIN
-   m_ftPrevIdleTime = new FILETIME;
-   m_ftPrevKernelTime = new FILETIME;
-   m_ftPrevUserTime = new FILETIME;
-   BOOL bResult = ::GetSystemTimes( m_ftPrevIdleTime,m_ftPrevKernelTime,m_ftPrevUserTime );
+   m_ftPrevIdleTime = new SFileTime;
+   m_ftPrevKernelTime = new SFileTime;
+   m_ftPrevUserTime = new SFileTime;
+
+   FILETIME ftIdleTime;
+   FILETIME ftKernelTime;
+   FILETIME ftUserTime;
+
+   BOOL bResult = ::GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
+
+   copyFileTimes(m_ftPrevIdleTime,ftIdleTime);
+   copyFileTimes(m_ftPrevKernelTime,ftKernelTime);
+   copyFileTimes(m_ftPrevUserTime,ftUserTime);
+
 #endif
    Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue())));
 }
@@ -25,7 +41,6 @@ CCalculatorCPU::~CCalculatorCPU()
    delete m_ftPrevUserTime;
 #endif
 }
-
 
 void CCalculatorCPU::CalculateCurrValue()
 {
@@ -50,9 +65,9 @@ void CCalculatorCPU::CalculateCurrValue()
    ULONG sys = kernel + user;
    m_iCurrCPUValue = ((sys-idle)/sys)*100;
 
-   m_ftPrevIdleTime = &ftNewIdleTime;
-   m_ftPrevKernelTime = &ftNewKernelTime;
-   m_ftPrevUserTime = &ftNewUserTime;
+   copyFileTimes(m_ftPrevIdleTime,ftNewIdleTime);
+   copyFileTimes(m_ftPrevKernelTime,ftNewKernelTime);
+   copyFileTimes(m_ftPrevUserTime,ftNewUserTime);
 
 #else
    m_iCurrCPUValue = 0;
