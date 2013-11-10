@@ -28,6 +28,6 @@ CMainWindowWidget::~CMainWindowWidget()
 void CMainWindowWidget::GetCurrDataValue()
 {
    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz");
-   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
-   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
+//   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
+//   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
 }
