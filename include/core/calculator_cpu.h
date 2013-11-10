@@ -3,7 +3,13 @@
 #include "data_calculator.h"
 #include <qobject.h>
 
-struct FILETIME;
+#ifdef Q_OS_WIN
+struct SFileTime 
+{
+    unsigned long dwLowDateTime;
+    unsigned long dwHighDateTime;
+};
+#endif
 
 class CCalculatorCPU :
    public QObject,
@@ -13,14 +19,16 @@ class CCalculatorCPU :
 public:
    CCalculatorCPU(QObject* parent = nullptr);
    virtual ~CCalculatorCPU();
-      
+
    //inherited from CAbstractDataCalculator
-   int GetCurrValue() const;
-   
-protected:
-   void GetNextValue();
+   const int GetCurrValue();
 private:
-   FILETIME* m_ftPrevIdleTime;
-   FILETIME* m_ftPrevKernelTime;
-   FILETIME* m_ftPrevUserTime;
+   Q_SLOT void CalculateCurrValue();
+   Q_SIGNAL void GetNextValue();
+#ifdef Q_OS_WIN
+   SFileTime* m_ftPrevIdleTime;
+   SFileTime* m_ftPrevKernelTime;
+   SFileTime* m_ftPrevUserTime;
+#endif
+   int m_iCurrCPUValue;
 };

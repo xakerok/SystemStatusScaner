@@ -1,7 +1,7 @@
 #ifndef MAIN_WIDGET_H
 #define MAIN_WIDGET_H
 
-#include <QtWidgets/QMainWindow>
+#include <qmainwindow.h>
 #include "ui_main_window_widget.h"
 
 class CMainWindowWidget : public QMainWindow

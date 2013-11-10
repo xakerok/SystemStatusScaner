@@ -72,6 +72,9 @@
     <ClCompile Include="..\..\src\core\calculator_ram.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\core\calculator_cpu.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
