@@ -30,7 +30,7 @@ CCalculatorCPU::CCalculatorCPU(QObject* parent) :
    copyFileTimes(m_ftPrevUserTime,ftUserTime);
 
 #endif
-   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue())));
+   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue())/*, Qt::QueuedConnection*/));
 }
 
 CCalculatorCPU::~CCalculatorCPU()
@@ -48,6 +48,10 @@ void CCalculatorCPU::CalculateCurrValue()
    FILETIME ftNewIdleTime;
    FILETIME ftNewKernelTime;
    FILETIME ftNewUserTime;
+   
+   //TODO: Fix crash divide by zero
+   ::Sleep(50);
+   
    BOOL bResult = ::GetSystemTimes(&ftNewIdleTime,&ftNewKernelTime,&ftNewUserTime);
 
    ULONG iOldIdle = m_ftPrevIdleTime->dwLowDateTime;
