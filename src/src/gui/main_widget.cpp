@@ -1,4 +1,4 @@
-#include "main_widget.h"
+#include "gui\main_widget.h"
 
 #include <qdebug.h>
 #include <qdatetime.h>
@@ -28,6 +28,6 @@ CMainWindowWidget::~CMainWindowWidget()
 void CMainWindowWidget::GetCurrDataValue()
 {
    qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz");
-   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
-   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
+//   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
+//   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
 }
