@@ -13,3 +13,4 @@ protected:
    virtual void calculateCurrValue() = 0;
 
 };
+

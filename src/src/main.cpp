@@ -6,9 +6,9 @@
 #pragma comment ( linker, "/subsystem:console" )
 #endif
 
-int main( int argc, char **argv)
+int main( int argc, char **argv )
 {
-	QApplication app(argc, argv);
+	QApplication app( argc, argv );
 	CMainWindowWidget w;
 	w.show();
 	return app.exec();

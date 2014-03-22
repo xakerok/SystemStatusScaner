@@ -22,4 +22,4 @@ private:
 // QTimer* m_pDataTimer;
 };
 
-#endif // MAIN_WIDGET_H
+#endif

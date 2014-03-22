@@ -47,4 +47,3 @@ private:
 
    mutable QMutex m_dataMutex;
 };
-
