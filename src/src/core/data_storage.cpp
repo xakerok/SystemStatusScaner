@@ -3,7 +3,7 @@
 #include "core\calculator_cpu.h"
 #include "core\calculator_ram.h"
 
-#include <QMutexLocker>
+
 #ifdef _DEBUG
 #include <qdebug.h>
 #endif
@@ -13,37 +13,61 @@ CDataStorage::CDataStorage(QObject* parent) :
    ,m_ThreadCPU(this)
    ,m_ThreadRAM(this)
    ,m_updatableTimer(new QTimer(this))
+CDataStorage::CDataStorage( QObject* parent ) : 
+   QObject( parent )
+   ,m_ThreadCPU( this )
+   ,m_ThreadRAM( this )
+   ,m_updatableTimer( new QTimer( this ) )
 {
    m_iCurrNumber = NULL;
    
    m_pCPUcalc = new CCalculatorCPU;
    m_pRAMcalc = new CCalculatorRAM;
    
-   dynamic_cast<QObject*>(m_pCPUcalc)->moveToThread(&m_ThreadCPU);
-   dynamic_cast<QObject*>(m_pRAMcalc)->moveToThread(&m_ThreadRAM);
-
    m_ThreadCPU.start();
    m_ThreadRAM.start();
-   
-   Q_ASSERT( connect( m_updatableTimer, SIGNAL(timeout()), this, SLOT( updateData() ) ) );
+
+   dynamic_cast<QObject*>(m_pCPUcalc)->moveToThread(&m_ThreadCPU);
+   dynamic_cast<QObject*>(m_pRAMcalc)->moveToThread(&m_ThreadRAM);
+   dynamic_cast<QObject*>( m_pCPUcalc )->moveToThread( &m_ThreadCPU );
+   dynamic_cast<QObject*>( m_pRAMcalc )->moveToThread( &m_ThreadRAM );
+
+   Q_ASSERT(connect(m_updatableTimer,SIGNAL(timeout()),this,SLOT(UpdateData())));
    m_updatableTimer->setSingleShot(false);
    m_updatableTimer->start(1000);
+
+
+   bool res = connect( m_updatableTimer, &QTimer::timeout, this, &CDataStorage::updateData );
+	Q_ASSERT( res );
+   m_updatableTimer->setSingleShot( false );
+   m_updatableTimer->start( 1000 );
+
+
 }
 
 CDataStorage::~CDataStorage()
 {
 }
 
+void CDataStorage::UpdateData()
 void CDataStorage::updateData()
 {
    TSDataValue* currDataValue = new TSDataValue;
+   SDataValue* currDataValue = new SDataValue;
    currDataValue->uiNumber = ++m_iCurrNumber;
    currDataValue->strTime = QDateTime::currentDateTime().toString("dd.MM hh:mm:ss.zzz");
+   currDataValue->usCPU = m_pCPUcalc->GetCurrValue();
+   currDataValue->usRAM = m_pRAMcalc->GetCurrValue();
+   currDataValue->strTime = QDateTime::currentDateTime().toString( "dd.MM hh:mm:ss.zzz" );
    currDataValue->usCPU = m_pCPUcalc->getCurrValue();
    currDataValue->usRAM = m_pRAMcalc->getCurrValue();
    
-   qDebug() <</* ++m_iCurrNumber << "\t" <<*/ QDateTime::currentDateTime().toString("dd.MM hh:mm:ss.zzz") << "\t" << m_pCPUcalc->getCurrValue() << "  " << m_pRAMcalc->getCurrValue();
-
+#ifdef _DEBUG
+   qDebug() << currDataValue->uiNumber << "\t" << currDataValue->strTime << "\t" << currDataValue->usCPU << "  " << currDataValue->usRAM;
+#endif
+   m_dataMutex.lock();
+   m_listDataValues.push_back(currDataValue);
+   m_dataMutex.unlock();
 }
 
 

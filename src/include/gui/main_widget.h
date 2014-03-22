@@ -12,14 +12,14 @@ class CMainWindowWidget : public QMainWindow
 {
 	Q_OBJECT
 public:
-	CMainWindowWidget(QWidget *parent = 0);
+	CMainWindowWidget( QWidget *parent = 0 );
 	~CMainWindowWidget();
 
 private:
 	Ui::MainWindowWidget ui;
 
    CDataStorage* m_pDataStorage;
-//   QTimer* m_pDataTimer;
+// QTimer* m_pDataTimer;
 };
 
 #endif // MAIN_WIDGET_H

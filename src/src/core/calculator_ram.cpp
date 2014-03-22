@@ -1,5 +1,4 @@
 #include "core\calculator_ram.h"
-#include <QMutexLocker>
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -8,22 +7,28 @@
 CCalculatorRAM::CCalculatorRAM (QObject* parent) :
    QObject(parent)
 {
-   m_pTimer = new QTimer(this);
-   Q_ASSERT( connect( m_pTimer, SIGNAL( timeout() ), this, SLOT( calculateCurrValue() ) ) );
-   m_pTimer->setInterval(1000);
-   m_pTimer->start();
+   CalculateCurrValue();
+   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue())));
+
+   calculateCurrValue();
+   bool res = connect( this, &CCalculatorRAM::nextValue, this, &CCalculatorRAM::calculateCurrValue );
+	Q_ASSERT( res );
+
 }
 
 CCalculatorRAM::~CCalculatorRAM()
 {
 }
 
+const int CCalculatorRAM::GetCurrValue()
 const int CCalculatorRAM::getCurrValue()
 {
-   QMutexLocker lock( &m_mutex );
+   emit GetNextValue();
+   emit nextValue();
    return m_iCurrRAMLoad;
 }
 
+void CCalculatorRAM::CalculateCurrValue()
 void CCalculatorRAM::calculateCurrValue()
 {
 #ifdef Q_OS_WIN
@@ -31,7 +36,6 @@ void CCalculatorRAM::calculateCurrValue()
    statex.dwLength = sizeof (statex);
    GlobalMemoryStatusEx (&statex);
 
-   QMutexLocker lock( &m_mutex );
    m_iCurrRAMLoad = statex.dwMemoryLoad;
 #else
    m_iCurrRAMLoad = 0;
