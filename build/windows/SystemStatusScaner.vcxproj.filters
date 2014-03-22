@@ -84,6 +84,24 @@
     <ClCompile Include="..\..\src\src\core\data_storage.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\src\core\bds_test.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_bds_test.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_bds_test.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_checker.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_checker.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\core\checker.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
@@ -101,12 +119,21 @@
     <CustomBuild Include="..\..\src\include\core\data_storage.h">
       <Filter>Header Files\core</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\src\include\core\bds_test.h">
+      <Filter>Header Files\core</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\include\core\checker.h">
+      <Filter>Header Files\core</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_main_window_widget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\include\core\data_calculator.h">
+      <Filter>Header Files\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\core\test_perfomance_interface.h">
       <Filter>Header Files\core</Filter>
     </ClInclude>
   </ItemGroup>

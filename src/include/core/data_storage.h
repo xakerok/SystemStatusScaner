@@ -39,9 +39,9 @@ private:
 
    QTimer* m_updatableTimer;
 
-   Q_SLOT void UpdateData();
+   Q_SLOT void updateData();
    int m_iCurrNumber;
 
-   mutable QMutex m_dataMutex;
+   QMutex m_dataMutex;
 };
 

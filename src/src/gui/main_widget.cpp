@@ -6,7 +6,6 @@
 CMainWindowWidget::CMainWindowWidget(QWidget *parent) : 
    QMainWindow(parent)
    ,m_pDataStorage(new CDataStorage(this))
-//   ,m_pDataTimer(new QTimer(this))
 {
 	ui.setupUi(this);
 	setCentralWidget(ui.tabWidget);

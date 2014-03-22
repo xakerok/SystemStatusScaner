@@ -2,6 +2,8 @@
 
 #include "data_calculator.h"
 #include <qobject.h>
+#include <QTimer>
+#include <QMutex>
 
 #ifdef Q_OS_WIN
 struct SFileTime 
@@ -21,14 +23,15 @@ public:
    virtual ~CCalculatorCPU();
 
    //inherited from CAbstractDataCalculator
-   const int GetCurrValue();
+   const int getCurrValue();
 private:
-   Q_SLOT void CalculateCurrValue();
-   Q_SIGNAL void GetNextValue();
+   Q_SLOT void calculateCurrValue();
+
 #ifdef Q_OS_WIN
-   SFileTime* m_ftPrevIdleTime;
-   SFileTime* m_ftPrevKernelTime;
-   SFileTime* m_ftPrevUserTime;
+   SFileTime m_ftPrevIdleTime;
+   SFileTime m_ftPrevKernelTime;
+   SFileTime m_ftPrevUserTime;
 #endif
-   int m_iCurrCPUValue;
+   QTimer* m_pTimer;
+   double m_iCurrCPUValue;
 };

@@ -2,6 +2,8 @@
 
 #include "data_calculator.h"
 #include <qobject.h>
+#include <qtimer.h>
+#include <qmutex.h>
 
 /**
 *  class for calculating ram
@@ -16,10 +18,10 @@ public:
    virtual ~CCalculatorRAM();
 
    //inherited from CAbstractDataCalculator
-   const int  GetCurrValue();
+   const int  getCurrValue();
 private:
-   Q_SLOT void CalculateCurrValue();
-   Q_SIGNAL void GetNextValue();
-
+   Q_SLOT void calculateCurrValue();
+   QTimer* m_pTimer;
+   QMutex m_mutex;
    int m_iCurrRAMLoad;
 };
