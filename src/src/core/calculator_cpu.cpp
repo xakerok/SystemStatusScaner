@@ -4,75 +4,52 @@
 #include <Windows.h>
 #endif
 
-void copyFileTimes( SFileTime* ft, FILETIME& winFT )
-{
-   ft->dwHighDateTime = winFT.dwHighDateTime;
-   ft->dwLowDateTime = winFT.dwLowDateTime;
-}
-
 CCalculatorCPU::CCalculatorCPU( QObject* parent ) :
    QObject( parent ),
 	m_iCurrCPUValue( 0 )
 {
-#ifdef Q_OS_WIN
-   m_ftPrevIdleTime = new SFileTime;
-   m_ftPrevKernelTime = new SFileTime;
-   m_ftPrevUserTime = new SFileTime;
+   calculateCurrValue();
 
-   FILETIME ftIdleTime;
-   FILETIME ftKernelTime;
-   FILETIME ftUserTime;
-
-   BOOL bResult = GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
-
-   copyFileTimes( m_ftPrevIdleTime,ftIdleTime );
-   copyFileTimes( m_ftPrevKernelTime,ftKernelTime );
-   copyFileTimes( m_ftPrevUserTime,ftUserTime );
-
-#endif
-	bool res = connect( this, &CCalculatorCPU::nextValue, this, &CCalculatorCPU::calculateCurrValue, Qt::QueuedConnection );
+   bool res = connect( this, &CCalculatorCPU::nextValue, this, &CCalculatorCPU::calculateCurrValue, Qt::QueuedConnection );
 	Q_ASSERT( res );
 }
 
 CCalculatorCPU::~CCalculatorCPU()
 {
-#ifdef Q_OS_WIN
-   delete m_ftPrevIdleTime;
-   delete m_ftPrevKernelTime;
-   delete m_ftPrevUserTime;
-#endif
 }
 
 void CCalculatorCPU::calculateCurrValue()
 {
 #ifdef Q_OS_WIN
-   FILETIME ftNewIdleTime;
-   FILETIME ftNewKernelTime;
-   FILETIME ftNewUserTime;
-   
-//TODO: Fix crash divide by zero
-//   ::Sleep(50);
-      
-   BOOL bResult = ::GetSystemTimes( &ftNewIdleTime, &ftNewKernelTime, &ftNewUserTime );
 
-   ULONG iOldIdle = m_ftPrevIdleTime->dwLowDateTime;
-   ULONG iNewIdle = ftNewIdleTime.dwLowDateTime;
-   ULONG idle = iNewIdle - iOldIdle;
+     FILETIME ftIdleTime;
+    FILETIME ftKernelTime;
+    FILETIME ftUserTime;
+    BOOL res = GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
 
-   ULONG iOldKernel = m_ftPrevKernelTime->dwLowDateTime;
-   ULONG iNewKernel = ftNewKernelTime.dwLowDateTime;
-   ULONG kernel = iNewKernel - iOldKernel;
+    Sleep(100);
 
-   ULONG iOldUser = m_ftPrevUserTime->dwLowDateTime;
-   ULONG iNewUser = ftNewUserTime.dwLowDateTime;
-   ULONG user = iNewUser - iOldUser;
+    FILETIME ftNewIdleTime;
+    FILETIME ftNewKernelTime;
+    FILETIME ftNewUserTime;
+    res = GetSystemTimes(&ftNewIdleTime, &ftNewKernelTime, &ftNewUserTime );
 
-   ULONG sys = kernel + user;
-   m_iCurrCPUValue = ( ( sys-idle ) / sys ) * 100;
+    int i_OldIdle = ftIdleTime.dwLowDateTime;
+    int i_NewIdle = ftNewIdleTime.dwLowDateTime;
+    int idle = i_NewIdle - i_OldIdle;
 
-   copyFileTimes( m_ftPrevIdleTime,ftNewIdleTime );
-   copyFileTimes( m_ftPrevKernelTime,ftNewKernelTime );
-   copyFileTimes( m_ftPrevUserTime,ftNewUserTime );
+    int i_OldKernel = ftKernelTime.dwLowDateTime;
+    int i_NewKernel = ftNewKernelTime.dwLowDateTime;
+    int kernel = i_NewKernel - i_OldKernel;
+
+    int i_OldUser = ftUserTime.dwLowDateTime;
+    int i_NewUser = ftNewUserTime.dwLowDateTime;
+    int user = i_NewUser - i_OldUser;
+
+    double sys = kernel + user;
+
+    m_iCurrCPUValue = ( (sys-idle)/sys)*100;
+
 
 #else
    m_iCurrCPUValue = 0;
