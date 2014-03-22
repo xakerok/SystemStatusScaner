@@ -6,6 +6,7 @@
 
 //test core classes for working
 #include "core\data_storage.h"
+#include "core/checker.h"
 #include <qtimer.h>
 
 class CMainWindowWidget : public QMainWindow
@@ -19,6 +20,9 @@ private:
 	Ui::MainWindowWidget ui;
 
    CDataStorage* m_pDataStorage;
+	QPointer<CChecker> m_pChecker;
+
+
 // QTimer* m_pDataTimer;
 };
 
