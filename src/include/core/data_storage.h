@@ -30,6 +30,9 @@ public:
 
    bool stop();
 	QList<SDataValue*> getListDataValues() const;
+signals:
+	void updated( SDataValue* dataValue );
+
 private:
    IDataCalculator* m_pCPUcalc;
    IDataCalculator* m_pRAMcalc;

@@ -126,7 +126,7 @@ double CBDSTest::GLOBAL_BDS(int m,int N)
 		values.insert(i,0);
 	for(int i=0;i<lst.size();i++)
 	{
-		double val =  values.value(lst[i]);
+		double val = values.value(lst[i]);
 		values.remove(lst.at(i));
 		values.insert(lst.at(i),++val);
 	}
@@ -177,9 +177,12 @@ double CBDSTest::C1n(int N )
 	return summ*k;
 }
 
-
-
 bool CBDSTest::checkPerfomance( QList<int> dataList )
 {
+	lst = dataList;
+
+	qDebug() << GLOBAL_BDS( 6, lst.size() );
+
+	lst.clear();
    return true;
 }

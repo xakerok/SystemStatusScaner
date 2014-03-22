@@ -23,9 +23,22 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 
 	//TODO" fixed size? It's possible?
 
+
+	bool res = connect( m_pDataStorage, &CDataStorage::updated, this, &CMainWindowWidget::on_undate ); 
 }
 
 CMainWindowWidget::~CMainWindowWidget()
 {
    do {} while ( !m_pDataStorage->stop() );
+}
+
+void CMainWindowWidget::on_undate( SDataValue* dataValue )
+{
+  QTreeWidgetItem *item = new QTreeWidgetItem( ui.treeWidget );
+ 
+  item->setText( 0, QString::number( dataValue->uiNumber ) );
+ 
+  item->setText( 1, dataValue->strTime );
+  item->setText( 2, QString::number( dataValue->usCPU ) );
+  item->setText( 3, QString::number( dataValue->usRAM ) );
 }

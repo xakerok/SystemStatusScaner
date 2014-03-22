@@ -30,6 +30,6 @@ private:
    int findZ(int n);
 private:
 	double e;
-   QList<int>lst;
+   QList<int> lst;
 
 };

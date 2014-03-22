@@ -19,7 +19,6 @@ void CChecker::setDataStorage( CDataStorage* dataStorage )
 
 void CChecker::on_check()
 {
-	
 	QList<SDataValue*> dataList = m_pDataStorage->getListDataValues();
 
 	QList<int> dataCPUList;

@@ -16,6 +16,9 @@ public:
 	CMainWindowWidget( QWidget *parent = 0 );
 	~CMainWindowWidget();
 
+public slots:
+	void on_undate( SDataValue* dataValue );
+
 private:
 	Ui::MainWindowWidget ui;
 
