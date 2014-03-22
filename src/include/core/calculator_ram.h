@@ -8,18 +8,20 @@
 */
 class CCalculatorRAM :
    public QObject,
-   public CAbstractDataCalculator
+   public IDataCalculator
 {
    Q_OBJECT
 public:
-   CCalculatorRAM(QObject* parent = nullptr);
-   virtual ~CCalculatorRAM();
+   CCalculatorRAM( QObject* parent = nullptr );
+	virtual ~CCalculatorRAM();
 
    //inherited from CAbstractDataCalculator
-   const int  GetCurrValue();
-private:
-   Q_SLOT void CalculateCurrValue();
-   Q_SIGNAL void GetNextValue();
+   const int  getCurrValue();
+private slots:
+   void calculateCurrValue();
+signals:
+   void nextValue();
 
+private:
    int m_iCurrRAMLoad;
 };

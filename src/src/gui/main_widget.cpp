@@ -5,9 +5,8 @@
 
 CMainWindowWidget::CMainWindowWidget(QWidget *parent) : 
    QMainWindow(parent)
-   ,m_pCPUcalc(new CCalculatorCPU(this))
-   ,m_pRAMcalc(new CCalculatorRAM(this))
-   ,m_pDataTimer(new QTimer(this))
+   ,m_pDataStorage(new CDataStorage(this))
+//   ,m_pDataTimer(new QTimer(this))
 {
 	ui.setupUi(this);
 	setCentralWidget(ui.tabWidget);
@@ -15,9 +14,10 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 	ui.tabCalculation->setLayout(ui.verticalLayout_3);
 	ui.tabGraph->setLayout(ui.verticalLayout_4);
 
-   m_pDataTimer->setInterval(1000);
-   Q_ASSERT(connect(m_pDataTimer,SIGNAL(timeout()),this,SLOT(GetCurrDataValue())));
-   m_pDataTimer->start();
+
+//   m_pDataTimer->setInterval(1000);
+//   Q_ASSERT(connect(m_pDataTimer,SIGNAL(timeout()),this,SLOT(GetCurrDataValue())));
+//   m_pDataTimer->start();
 
    //TODO: del following code
    /*QTreeWidgetItem *item = new QTreeWidgetItem(ui.treeWidget);
@@ -32,16 +32,10 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
    ui.treeWidget->setColumnWidth( 2, 75 );
    ui.treeWidget->setColumnWidth( 3, 75 );
 	//TODO" fixed size? It's possible?
+
 }
 
 CMainWindowWidget::~CMainWindowWidget()
 {
-
-}
-
-void CMainWindowWidget::GetCurrDataValue()
-{
-   qDebug() << QDateTime::currentDateTime().toString("hh:mm:ss.zzz");
-//   qDebug() << "CurrCPU : " << m_pCPUcalc->GetCurrValue() ;
-//   qDebug() << "CurrRAM : " << m_pRAMcalc->GetCurrValue() ;
+   do {} while ( !m_pDataStorage->stop() );
 }
