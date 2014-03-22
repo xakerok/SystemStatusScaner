@@ -26,8 +26,10 @@ private:
    double GLOBAL_BDS(int m,int N);
    double _GLOBAL_SKO(int m, int N);
    double C1n(int N);
-   double e;
+   
    int findZ(int n);
+private:
+	double e;
    QList<int>lst;
 
 };

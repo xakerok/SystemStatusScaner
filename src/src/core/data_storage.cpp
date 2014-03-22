@@ -52,7 +52,6 @@ void CDataStorage::updateData()
    m_dataMutex.unlock();
 }
 
-
 bool CDataStorage::stop()
 {
    m_updatableTimer->stop();
@@ -63,4 +62,9 @@ bool CDataStorage::stop()
    if( m_ThreadCPU.isFinished() && m_ThreadRAM.isFinished() )
       return true;
    return false;
+}
+
+QList<SDataValue*> CDataStorage::getListDataValues() const
+{
+	return m_listDataValues;
 }

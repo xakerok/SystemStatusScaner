@@ -9,6 +9,14 @@
 #include <qthread.h>
 #include <qmutex.h>
 
+struct SDataValue
+{
+   uint uiNumber;
+   QString strTime;
+   ushort usCPU;
+   ushort usRAM;
+};
+
 /**
 *  Class for collecting all loaded data
 */
@@ -21,17 +29,11 @@ public:
    virtual ~CDataStorage();
 
    bool stop();
+	QList<SDataValue*> getListDataValues() const;
 private:
    IDataCalculator* m_pCPUcalc;
    IDataCalculator* m_pRAMcalc;
    
-   struct SDataValue
-   {
-      uint uiNumber;
-      QString strTime;
-      ushort usCPU;
-      ushort usRAM;
-   };
    QList<SDataValue*> m_listDataValues;
 
    QThread m_ThreadCPU;
