@@ -4,16 +4,12 @@
 #include <Windows.h>
 #endif
 
-void copyFileTimes(SFileTime* ft, FILETIME& winFT)
 void copyFileTimes( SFileTime* ft, FILETIME& winFT )
 {
    ft->dwHighDateTime = winFT.dwHighDateTime;
    ft->dwLowDateTime = winFT.dwLowDateTime;
 }
 
-CCalculatorCPU::CCalculatorCPU(QObject* parent) :
-   QObject(parent),
-   m_iCurrCPUValue(NULL)
 CCalculatorCPU::CCalculatorCPU( QObject* parent ) :
    QObject( parent ),
 	m_iCurrCPUValue( 0 )
@@ -27,25 +23,13 @@ CCalculatorCPU::CCalculatorCPU( QObject* parent ) :
    FILETIME ftKernelTime;
    FILETIME ftUserTime;
 
-   BOOL bResult = ::GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
    BOOL bResult = GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
 
-
-
-
-
-
-
-
-   copyFileTimes(m_ftPrevIdleTime,ftIdleTime);
-   copyFileTimes(m_ftPrevKernelTime,ftKernelTime);
-   copyFileTimes(m_ftPrevUserTime,ftUserTime);
    copyFileTimes( m_ftPrevIdleTime,ftIdleTime );
    copyFileTimes( m_ftPrevKernelTime,ftKernelTime );
    copyFileTimes( m_ftPrevUserTime,ftUserTime );
 
 #endif
-   Q_ASSERT(connect(this,SIGNAL(GetNextValue()),this,SLOT(CalculateCurrValue()), Qt::QueuedConnection));
 	bool res = connect( this, &CCalculatorCPU::nextValue, this, &CCalculatorCPU::calculateCurrValue, Qt::QueuedConnection );
 	Q_ASSERT( res );
 }
@@ -59,7 +43,6 @@ CCalculatorCPU::~CCalculatorCPU()
 #endif
 }
 
-void CCalculatorCPU::CalculateCurrValue()
 void CCalculatorCPU::calculateCurrValue()
 {
 #ifdef Q_OS_WIN
@@ -69,12 +52,7 @@ void CCalculatorCPU::calculateCurrValue()
    
 //TODO: Fix crash divide by zero
 //   ::Sleep(50);
-   
-   BOOL bResult = ::GetSystemTimes(&ftNewIdleTime,&ftNewKernelTime,&ftNewUserTime);
-   
-//TODO: Fix crash divide by zero
-//   ::Sleep(50);
-   
+      
    BOOL bResult = ::GetSystemTimes( &ftNewIdleTime, &ftNewKernelTime, &ftNewUserTime );
 
    ULONG iOldIdle = m_ftPrevIdleTime->dwLowDateTime;
@@ -90,12 +68,8 @@ void CCalculatorCPU::calculateCurrValue()
    ULONG user = iNewUser - iOldUser;
 
    ULONG sys = kernel + user;
-   m_iCurrCPUValue = ((sys-idle)/sys)*100;
    m_iCurrCPUValue = ( ( sys-idle ) / sys ) * 100;
 
-   copyFileTimes(m_ftPrevIdleTime,ftNewIdleTime);
-   copyFileTimes(m_ftPrevKernelTime,ftNewKernelTime);
-   copyFileTimes(m_ftPrevUserTime,ftNewUserTime);
    copyFileTimes( m_ftPrevIdleTime,ftNewIdleTime );
    copyFileTimes( m_ftPrevKernelTime,ftNewKernelTime );
    copyFileTimes( m_ftPrevUserTime,ftNewUserTime );
@@ -106,10 +80,8 @@ void CCalculatorCPU::calculateCurrValue()
 #endif
 }
 
-const int CCalculatorCPU::GetCurrValue()
 const int CCalculatorCPU::getCurrValue()
 {
-   emit GetNextValue();
    emit nextValue();
    return m_iCurrCPUValue;
 }

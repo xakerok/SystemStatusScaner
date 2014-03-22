@@ -17,28 +17,21 @@ class CDataStorage : public QObject
    Q_OBJECT
 
 public:
-   CDataStorage(QObject* parent = nullptr);
    CDataStorage( QObject* parent = nullptr );
    virtual ~CDataStorage();
 
    bool stop();
 private:
-   CAbstractDataCalculator* m_pCPUcalc;
-   CAbstractDataCalculator* m_pRAMcalc;
    IDataCalculator* m_pCPUcalc;
    IDataCalculator* m_pRAMcalc;
-
-   typedef struct SDataValue
+   
    struct SDataValue
    {
       uint uiNumber;
       QString strTime;
       ushort usCPU;
       ushort usRAM;
-   }TSDataValue;
-   QList<TSDataValue*> m_listDataValues;
    };
-
    QList<SDataValue*> m_listDataValues;
 
    QThread m_ThreadCPU;
@@ -46,7 +39,6 @@ private:
 
    QTimer* m_updatableTimer;
 
-   Q_SLOT void UpdateData();
 private slots:
    void updateData();
 
