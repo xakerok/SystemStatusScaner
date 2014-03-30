@@ -181,5 +181,16 @@ double CBDSTest::C1n(int N )
 
 bool CBDSTest::checkPerfomance( QList<int> dataList )
 {
+ lst = dataList;
+
+ double resBDS = GLOBAL_BDS( 6, lst.size() );
+ qDebug() << resBDS;
+ lst.clear();
+
+ if( fabs( resBDS ) > 1.96 )
+ {
+  return false;
+ }
+ 
    return true;
 }

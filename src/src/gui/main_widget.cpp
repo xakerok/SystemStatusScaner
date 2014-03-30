@@ -21,11 +21,37 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 
 	m_pChecker->setDataStorage( m_pDataStorage );
 
-	//TODO" fixed size? It's possible?
+   connect ( ui.buttonCheck, &QPushButton::clicked, m_pChecker, &CChecker::on_check );
+
+   connect( m_pChecker, &CChecker::alertGreen, this, &CMainWindowWidget::checkerGreen );
+   connect( m_pChecker, &CChecker::alertYellow, this, &CMainWindowWidget::checkerYellow );
+   connect( m_pChecker, &CChecker::alertRed, this, &CMainWindowWidget::checkerRed );
 
 }
 
 CMainWindowWidget::~CMainWindowWidget()
 {
    do {} while ( !m_pDataStorage->stop() );
+}
+
+void CMainWindowWidget::checkerGreen()
+{
+   qDebug() << "green alert";
+   QPixmap pixmap( "qrc:/smiles/smile-normal1.png" );
+   QPalette palette;    
+   palette.setBrush( ui.buttonCheck->backgroundRole(), QBrush( pixmap ) );
+  // ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal1.png" ) );
+  // ui.buttonCheck->setIconSize( QSize( 100,100 ) );
+}
+void CMainWindowWidget::checkerYellow()
+{
+   qDebug() << "yellow alert";
+   ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal3.png" ) );
+   ui.buttonCheck->setIconSize( QSize( 100,100 ) );
+}
+void CMainWindowWidget::checkerRed()
+{
+   qDebug() << "red alert";
+   ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal2.png" ) );
+   ui.buttonCheck->setIconSize( QSize( 100,100 ) );
 }

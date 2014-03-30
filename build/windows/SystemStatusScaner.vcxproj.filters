@@ -43,6 +43,11 @@
     <Filter Include="Source Files\core">
       <UniqueIdentifier>{ced61caa-6329-4541-89ce-3ba233cab871}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\core\calculator_cpu.cpp">
@@ -102,6 +107,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_data_storage.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\src\core\linear_difference_test.cpp">
+      <Filter>Source Files\core</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_linear_difference_test.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_linear_difference_test.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
@@ -124,6 +141,12 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\include\core\checker.h">
       <Filter>Header Files\core</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\include\core\linear_difference_test.h">
+      <Filter>Header Files\core</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\etc\resources.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

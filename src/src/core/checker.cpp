@@ -5,6 +5,7 @@ CChecker::CChecker( QObject* parent )
 	: QObject( parent )
 {
 	m_pBDStest = new CBDSTest( this );
+   m_pLinearTest = new CLinearDifferenceTest( this );
 }
 
 CChecker::~CChecker()
@@ -33,6 +34,15 @@ void CChecker::on_check()
 	{
 		dataRAMList.push_back( currItem->usRAM );
 	}
-	
-	//m_pBDStest->checkPerfomance(  );
+
+   if( ( !m_pLinearTest->checkCPUValues( dataCPUList ) && !m_pBDStest->checkPerfomance( dataCPUList ) ) &&
+      (  !m_pLinearTest->checkRAMValues( dataRAMList ) && !m_pBDStest->checkPerfomance( dataRAMList  ) ) )
+      emit alertRed();
+   else 
+      if( m_pLinearTest->checkCPUValues( dataCPUList ) && m_pBDStest->checkPerfomance( dataCPUList )  && 
+          m_pLinearTest->checkRAMValues( dataRAMList ) && m_pBDStest->checkPerfomance( dataRAMList ) ) 
+         emit alertGreen();
+      else
+         emit alertYellow();
+
 }

@@ -4,10 +4,8 @@
 #include <qmainwindow.h>
 #include "ui_main_window_widget.h"
 
-//test core classes for working
 #include "core\data_storage.h"
 #include "core/checker.h"
-#include <qtimer.h>
 
 class CMainWindowWidget : public QMainWindow
 {
@@ -16,14 +14,17 @@ public:
 	CMainWindowWidget( QWidget *parent = 0 );
 	~CMainWindowWidget();
 
+   public slots:
+      void checkerGreen();
+      void checkerYellow();
+      void checkerRed();
+
 private:
 	Ui::MainWindowWidget ui;
 
    CDataStorage* m_pDataStorage;
-	QPointer<CChecker> m_pChecker;
+	CChecker* m_pChecker;
 
-
-// QTimer* m_pDataTimer;
 };
 
 #endif
