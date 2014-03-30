@@ -40,7 +40,7 @@
     <Filter Include="Header Files\core">
       <UniqueIdentifier>{2d35f34b-e03f-435a-9fef-b11b6a83ffcc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\core">
+    <Filter Include="Header Files\gui\core">
       <UniqueIdentifier>{ced61caa-6329-4541-89ce-3ba233cab871}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\src\core\calculator_cpu.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\gui\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\src\core\calculator_ram.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\gui\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\src\gui\main_widget.cpp">
       <Filter>Source Files\gui</Filter>
@@ -63,10 +63,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\src\core\data_storage.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\gui\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\src\core\bds_test.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\gui\core</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_bds_test.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -81,7 +81,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\src\core\checker.cpp">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\gui\core</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_main_widget.cpp">
       <Filter>Generated Files\Debug</Filter>

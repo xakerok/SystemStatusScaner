@@ -26,12 +26,22 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
    connect( m_pChecker, &CChecker::alertGreen, this, &CMainWindowWidget::checkerGreen );
    connect( m_pChecker, &CChecker::alertYellow, this, &CMainWindowWidget::checkerYellow );
    connect( m_pChecker, &CChecker::alertRed, this, &CMainWindowWidget::checkerRed );
-
 }
 
 CMainWindowWidget::~CMainWindowWidget()
 {
    do {} while ( !m_pDataStorage->stop() );
+}
+
+void CMainWindowWidget::on_undate( SDataValue* dataValue )
+{
+  QTreeWidgetItem *item = new QTreeWidgetItem( ui.treeWidget );
+ 
+  item->setText( 0, QString::number( dataValue->uiNumber ) );
+ 
+  item->setText( 1, dataValue->strTime );
+  item->setText( 2, QString::number( dataValue->usCPU ) );
+  item->setText( 3, QString::number( dataValue->usRAM ) );
 }
 
 void CMainWindowWidget::checkerGreen()

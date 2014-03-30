@@ -47,8 +47,16 @@ void CDataStorage::updateData()
 #ifdef _DEBUG
    qDebug() << currDataValue->uiNumber << "\t" << currDataValue->strTime << "\t" << currDataValue->usCPU << "  " << currDataValue->usRAM;
 #endif
+	emit updated( currDataValue );
+
    m_dataMutex.lock();
+ 
    m_listDataValues.push_back(currDataValue);
+	if( m_listDataValues.size() > 100 )
+	{
+		m_listDataValues.pop_front();
+	}
+
    m_dataMutex.unlock();
 }
 

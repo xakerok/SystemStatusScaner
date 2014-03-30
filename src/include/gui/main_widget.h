@@ -9,21 +9,22 @@
 
 class CMainWindowWidget : public QMainWindow
 {
-	Q_OBJECT
+   Q_OBJECT
 public:
-	CMainWindowWidget( QWidget *parent = 0 );
-	~CMainWindowWidget();
+   CMainWindowWidget( QWidget *parent = 0 );
+   ~CMainWindowWidget();
 
    public slots:
+      void on_undate( SDataValue* dataValue );
       void checkerGreen();
       void checkerYellow();
       void checkerRed();
 
 private:
-	Ui::MainWindowWidget ui;
+   Ui::MainWindowWidget ui;
 
    CDataStorage* m_pDataStorage;
-	CChecker* m_pChecker;
+   CChecker* m_pChecker;
 
 };
 
