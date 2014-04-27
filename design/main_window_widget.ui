@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tabCalculation">
      <attribute name="title">
@@ -460,25 +460,6 @@ p, li { white-space: pre-wrap; }
       <string>Test</string>
      </attribute>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QPushButton" name="buttonCheck">
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>400</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>CHECK</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <spacer name="verticalSpacer">
         <property name="orientation">
@@ -530,6 +511,25 @@ p, li { white-space: pre-wrap; }
          </size>
         </property>
        </spacer>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="buttonCheck">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>400</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>CHECK</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

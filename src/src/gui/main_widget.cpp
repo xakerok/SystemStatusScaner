@@ -2,6 +2,7 @@
 
 #include <qdebug.h>
 #include <qdatetime.h>
+#include <qfileinfo.h>
 
 CMainWindowWidget::CMainWindowWidget(QWidget *parent) : 
    QMainWindow(parent)
@@ -21,7 +22,7 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 
 	m_pChecker->setDataStorage( m_pDataStorage );
 
-   connect ( ui.buttonCheck, &QPushButton::clicked, m_pChecker, &CChecker::on_check );
+   connect ( ui.buttonCheck, &QAbstractButton::clicked, m_pChecker, &CChecker::on_check );
 
    connect( m_pChecker, &CChecker::alertGreen, this, &CMainWindowWidget::checkerGreen );
    connect( m_pChecker, &CChecker::alertYellow, this, &CMainWindowWidget::checkerYellow );
@@ -47,21 +48,18 @@ void CMainWindowWidget::on_undate( SDataValue* dataValue )
 void CMainWindowWidget::checkerGreen()
 {
    qDebug() << "green alert";
-   QPixmap pixmap( "qrc:/smiles/smile-normal1.png" );
-   QPalette palette;    
-   palette.setBrush( ui.buttonCheck->backgroundRole(), QBrush( pixmap ) );
-  // ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal1.png" ) );
-  // ui.buttonCheck->setIconSize( QSize( 100,100 ) );
+   ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/2.png" ) );
+   ui.buttonCheck->setIconSize( QSize(100, 100) );
 }
 void CMainWindowWidget::checkerYellow()
 {
    qDebug() << "yellow alert";
-   ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal3.png" ) );
-   ui.buttonCheck->setIconSize( QSize( 100,100 ) );
+   ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/3.png" ) );
+   ui.buttonCheck->setIconSize( QSize(100, 100) );
 }
 void CMainWindowWidget::checkerRed()
 {
    qDebug() << "red alert";
-   ui.buttonCheck->setIcon( QIcon ( "qrc:/smiles/smile-normal2.png" ) );
-   ui.buttonCheck->setIconSize( QSize( 100,100 ) );
+   ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/1.png" ) );
+   ui.buttonCheck->setIconSize( QSize(100, 100) );
 }

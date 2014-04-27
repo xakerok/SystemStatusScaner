@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/smiles">
-        <file>smile-normal1.png</file>
-        <file>smile-normal2.png</file>
-        <file>smile-normal3.png</file>
+        <file>1.png</file>
+        <file>2.png</file>
+        <file>3.png</file>
     </qresource>
 </RCC>
