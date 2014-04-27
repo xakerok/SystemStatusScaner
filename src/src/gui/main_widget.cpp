@@ -27,6 +27,8 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
    connect( m_pChecker, &CChecker::alertGreen, this, &CMainWindowWidget::checkerGreen );
    connect( m_pChecker, &CChecker::alertYellow, this, &CMainWindowWidget::checkerYellow );
    connect( m_pChecker, &CChecker::alertRed, this, &CMainWindowWidget::checkerRed );
+
+   connect ( m_pDataStorage, &CDataStorage::updated, this, &CMainWindowWidget::on_undate );
 }
 
 CMainWindowWidget::~CMainWindowWidget()
@@ -43,23 +45,24 @@ void CMainWindowWidget::on_undate( SDataValue* dataValue )
   item->setText( 1, dataValue->strTime );
   item->setText( 2, QString::number( dataValue->usCPU ) );
   item->setText( 3, QString::number( dataValue->usRAM ) );
+
 }
 
 void CMainWindowWidget::checkerGreen()
 {
    qDebug() << "green alert";
    ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/2.png" ) );
-   ui.buttonCheck->setIconSize( QSize(100, 100) );
+   ui.buttonCheck->setIconSize( QSize( 100, 100) );
 }
 void CMainWindowWidget::checkerYellow()
 {
    qDebug() << "yellow alert";
    ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/3.png" ) );
-   ui.buttonCheck->setIconSize( QSize(100, 100) );
+   ui.buttonCheck->setIconSize( QSize( 100, 100) );
 }
 void CMainWindowWidget::checkerRed()
 {
    qDebug() << "red alert";
    ui.buttonCheck->setIcon( QIcon( qApp->applicationDirPath() + "/1.png" ) );
-   ui.buttonCheck->setIconSize( QSize(100, 100) );
+   ui.buttonCheck->setIconSize( QSize( 100, 100) );
 }
