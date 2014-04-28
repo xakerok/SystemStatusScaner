@@ -181,8 +181,11 @@ bool CBDSTest::checkPerfomance( QList<int> dataList )
 {
 	lst = dataList;
 
-	qDebug() << GLOBAL_BDS( 6, lst.size() );
+   double d = GLOBAL_BDS( 6, lst.size() );
+	qDebug() << "bds result = " << d;
 
 	lst.clear();
-   return true;
+   if( abs(d) < 1.96 )
+      return true;
+   return false;
 }
