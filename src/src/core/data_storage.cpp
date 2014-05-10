@@ -51,7 +51,7 @@ void CDataStorage::updateData()
 
    m_dataMutex.lock();
  
-   m_listDataValues.push_back(currDataValue);
+   m_listDataValues.push_back( currDataValue );
 	if( m_listDataValues.size() > 100 )
 	{
 		m_listDataValues.pop_front();

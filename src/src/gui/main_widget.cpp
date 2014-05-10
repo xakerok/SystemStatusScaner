@@ -15,10 +15,13 @@ CMainWindowWidget::CMainWindowWidget(QWidget *parent) :
 	ui.tabCalculation->setLayout(ui.verticalLayout_3);
 	ui.tabGraph->setLayout(ui.verticalLayout_4);
 
-   ui.treeWidget->setColumnWidth( 0, 134 );
-   ui.treeWidget->setColumnWidth( 1, 175 );
-   ui.treeWidget->setColumnWidth( 2, 75 );
-   ui.treeWidget->setColumnWidth( 3, 75 );
+   ui.treeWidget->setColumnWidth( 0, 75 );
+   ui.treeWidget->setColumnWidth( 1, 100 );
+   ui.treeWidget->setColumnWidth( 2, 50 );
+   ui.treeWidget->setColumnWidth( 3, 50 );
+   
+   ui.splitter->setStretchFactor( 0, 2 );
+   ui.splitter->setStretchFactor( 1, 5 );
 
 	m_pChecker->setDataStorage( m_pDataStorage );
 
@@ -46,6 +49,9 @@ void CMainWindowWidget::on_undate( SDataValue* dataValue )
   item->setText( 2, QString::number( dataValue->usCPU ) );
   item->setText( 3, QString::number( dataValue->usRAM ) );
 
+  ui.graphicsView_cpu->painting( m_pDataStorage->getListDataValues(), MyGraphicsView::CPUTypePainter );
+  ui.graphicsView_ram->painting( m_pDataStorage->getListDataValues(), MyGraphicsView::RAMTypePainter );
+  ui.graphicsView_all->painting( m_pDataStorage->getListDataValues(), MyGraphicsView::ALLTypePainter );
 }
 
 void CMainWindowWidget::checkerGreen()

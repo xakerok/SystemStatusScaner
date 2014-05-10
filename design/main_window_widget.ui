@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>777</width>
     <height>500</height>
    </rect>
   </property>
@@ -19,12 +19,12 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>661</width>
-      <height>441</height>
+      <width>581</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabCalculation">
      <attribute name="title">
@@ -365,8 +365,8 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>791</width>
-        <height>421</height>
+        <width>538</width>
+        <height>239</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -432,22 +432,37 @@ p, li { white-space: pre-wrap; }
          </widget>
          <widget class="QTabWidget" name="tabGraphicsChoise">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab_cpu">
            <attribute name="title">
             <string>CPU</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="MyGraphicsView" name="graphicsView_cpu"/>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tab_ram">
            <attribute name="title">
             <string>RAM</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="MyGraphicsView" name="graphicsView_ram"/>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tab_cpu_ram">
            <attribute name="title">
             <string>CPU / RAM</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="0">
+             <widget class="MyGraphicsView" name="graphicsView_all"/>
+            </item>
+           </layout>
           </widget>
          </widget>
         </widget>
@@ -540,13 +555,20 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>777</width>
      <height>21</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyGraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">gui/mygraphicsview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

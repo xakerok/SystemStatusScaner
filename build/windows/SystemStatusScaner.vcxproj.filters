@@ -119,6 +119,15 @@
     <ClCompile Include="..\..\src\src\core\linear_difference_test.cpp">
       <Filter>Source Files\core</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_mygraphicsview.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_mygraphicsview.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\src\gui\mygraphicsview.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\design\main_window_widget.ui">
@@ -147,6 +156,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\etc\resources.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\include\gui\mygraphicsview.h">
+      <Filter>Header Files\gui</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
