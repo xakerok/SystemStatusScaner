@@ -18,6 +18,7 @@ OBJECTS_DIR += debug
 UI_DIR += ./GeneratedFiles
 RCC_DIR += ./GeneratedFiles
 HEADERS += ../../src/include/gui/main_widget.h \
+    ../../src/include/gui/mygraphicsview.h \
     ../../src/include/core/data_calculator.h \
     ../../src/include/core/test_perfomance_interface.h \
     ../../src/include/core/calculator_cpu.h \
@@ -28,6 +29,7 @@ HEADERS += ../../src/include/gui/main_widget.h \
     ../../src/include/core/linear_difference_test.h
 SOURCES += ../../src/src/main.cpp \
     ../../src/src/gui/main_widget.cpp \
+    ../../src/src/gui/mygraphicsview.cpp \
     ../../src/src/core/bds_test.cpp \
     ../../src/src/core/calculator_cpu.cpp \
     ../../src/src/core/calculator_ram.cpp \
