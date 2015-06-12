@@ -30,6 +30,10 @@ public:
 
    bool stop();
 	QList<SDataValue*> getListDataValues() const;
+
+    QTimer* m_updatableTimer;
+
+
 signals:
 	void updated( SDataValue* dataValue );
 
@@ -42,7 +46,6 @@ private:
    QThread m_ThreadCPU;
    QThread m_ThreadRAM;
 
-   QTimer* m_updatableTimer;
 
 private slots:
    void updateData();

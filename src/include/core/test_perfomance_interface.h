@@ -4,6 +4,6 @@
 class ITestPerfomance
 {
 public:
-   virtual ~ITestPerfomance(){};
+   virtual ~ITestPerfomance(){}
    virtual bool checkPerfomance( QList<int> dataList ) = 0;
 };

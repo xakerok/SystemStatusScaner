@@ -13,7 +13,7 @@ class MyGraphicsView : public QGraphicsView
 
 public:
     MyGraphicsView( QWidget *parent = 0 );
-    void painting( QList <SDataValue*> & value, int painterType );
+    void painting( QList <SDataValue*> value, int painterType );
 
     enum TypePainter {
        CPUTypePainter = 0,

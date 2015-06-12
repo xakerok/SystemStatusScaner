@@ -26,14 +26,14 @@ void CCalculatorCPU::calculateCurrValue()
     FILETIME ftKernelTime;
     FILETIME ftUserTime;
     BOOL res = GetSystemTimes( &ftIdleTime, &ftKernelTime, &ftUserTime );
-
+    Q_ASSERT( res );
     Sleep(100);
 
     FILETIME ftNewIdleTime;
     FILETIME ftNewKernelTime;
     FILETIME ftNewUserTime;
     res = GetSystemTimes(&ftNewIdleTime, &ftNewKernelTime, &ftNewUserTime );
-
+    Q_ASSERT( res );
     int i_OldIdle = ftIdleTime.dwLowDateTime;
     int i_NewIdle = ftNewIdleTime.dwLowDateTime;
     int idle = i_NewIdle - i_OldIdle;
@@ -57,8 +57,8 @@ void CCalculatorCPU::calculateCurrValue()
 #endif
 }
 
-const int CCalculatorCPU::getCurrValue()
+int CCalculatorCPU::getCurrValue()
 {
-   emit nextValue();
+   Q_EMIT nextValue();
    return m_iCurrCPUValue;
 }

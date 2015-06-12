@@ -24,7 +24,7 @@ double CBDSTest::Cmn(int m, int N )
 {
 	double k=(double)2/((N-m+1)*(N-m));
 	int summ = 0;
-	int mainsumm = 0;
+//	int mainsumm = 0;
 	for(int s=m;s<N;s++)
 	{
 
@@ -46,7 +46,7 @@ double CBDSTest::Sum_kForJtoM(int j, int m, double k)
 {
 	double curr = 0;
 	double intermediateValue1 = 0.0;
-	double intermediateValue2;
+//	double intermediateValue2;
 	double intermediateValue3;
 	double intermediateValue4;
 	double intermediateValue5;
@@ -113,7 +113,7 @@ double CBDSTest::Wmn(int N, int m, double Cmn, double C1N_m, double sko)
 	return sqrt((double)N-m+1)*(Cmn-pow(C1N_m, m))/sko;
 }
 
-int CBDSTest::findZ(int number)
+int CBDSTest::findZ(int /*number*/)
 {
 	return 0;
 }

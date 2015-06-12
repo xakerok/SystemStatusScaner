@@ -13,7 +13,7 @@ public:
    virtual ~CCalculatorCPU();
 
    //inherited from IDataCalculator
-   const int getCurrValue();
+   int getCurrValue();
 private slots:
    void calculateCurrValue();
 signals:

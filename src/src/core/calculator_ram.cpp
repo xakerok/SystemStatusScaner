@@ -16,9 +16,9 @@ CCalculatorRAM::~CCalculatorRAM()
 {
 }
 
-const int CCalculatorRAM::getCurrValue()
+int CCalculatorRAM::getCurrValue()
 {
-   emit nextValue();
+   Q_EMIT nextValue();
    return m_iCurrRAMLoad;
 }
 

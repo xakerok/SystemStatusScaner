@@ -20,7 +20,7 @@ MyGraphicsView::MyGraphicsView( QWidget* parent ): QGraphicsView( parent )
 }
 
 
-void MyGraphicsView::painting( QList <SDataValue*> & lst, int painterType )
+void MyGraphicsView::painting( QList <SDataValue*> lst, int painterType )
 {
 	points.clear();
 	scene->clear();

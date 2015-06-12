@@ -21,6 +21,8 @@ public:
       void checkerRed();
 
 private:
+      Q_SLOT void updateCurrentTime();
+
    Ui::MainWindowWidget ui;
 
    CDataStorage* m_pDataStorage;

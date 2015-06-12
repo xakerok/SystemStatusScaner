@@ -1,11 +1,8 @@
 #pragma once
 
 #include "data_calculator.h"
-#include <qobject.h>
+#include <QObject>
 
-/**
-*  class for calculating ram
-*/
 class CCalculatorRAM :
    public QObject,
    public IDataCalculator
@@ -16,7 +13,7 @@ public:
 	virtual ~CCalculatorRAM();
 
    //inherited from IDataCalculator
-   const int  getCurrValue();
+   int  getCurrValue();
 private slots:
    void calculateCurrValue();
 signals:

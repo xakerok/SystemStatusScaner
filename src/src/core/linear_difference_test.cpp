@@ -18,7 +18,7 @@ bool CLinearDifferenceTest::checkCPUValues( QList<int> values )
 {
    for( int index=1; index < values.size(); index ++ )
 	{
-      if(values.at( index-1 ) >=50 && values.at( index ) >= 50 )
+      if(values.at( index-1 ) >=90 && values.at( index ) >= 90 )
 		{
 			return false;
 		}
@@ -30,7 +30,7 @@ bool CLinearDifferenceTest::checkRAMValues( QList<int> values )
 {
    for( int index=1; index < values.size(); index ++ )
 	{
-		if( abs( values.at( index-1 ) - values.at( index ) ) >= 5 )
+        if( abs( values.at( index-1 ) - values.at( index ) ) >= 10 )
 		{
 			return false;
 		}
